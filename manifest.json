@@ -1,24 +1,30 @@
 {
-    "manifest_version": 2,
-    "name": "Video Container Transparency",
-    "version": "1.1",
-    "description": "Toggle opacity for #video-container on any webpage.",
-    "browser_action": {
-      "default_popup": "popup.html",
-      "default_icon": "icon.png"
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"],
-        "run_at": "document_end"
-      }
-    ],
-    "permissions": ["storage", "activeTab"],
-    "browser_specific_settings": {
-      "gecko": {
-        "id": "video-opacity@your-extension.com"
-      }
+  "manifest_version": 2,
+  "name": "Video Opacity Controller",
+  "version": "1.2",
+  "description": "Control the opacity of #video-container with a slider & keyboard shortcut.",
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "commands": {
+    "toggle-opacity": {
+      "suggested_key": {
+        "default": "Alt+O"
+      },
+      "description": "Toggle video opacity"
     }
-  }
-  
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": ["storage", "activeTab"]
+}
